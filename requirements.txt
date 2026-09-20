@@ -1,0 +1,18 @@
+# Direct dependencies only. For the exact, fully pinned environment this
+# project was developed against, use `requirements-lock.txt` instead.
+
+# UI
+gradio==4.44.0
+
+# watsonx.ai + LangChain
+ibm-watsonx-ai==1.1.2
+langchain==0.2.11
+langchain-community==0.2.10
+langchain-ibm==0.1.11
+
+# RAG: PDF loading and the vector store
+pypdf==4.3.1
+chromadb==0.4.24
+
+# Configuration
+python-dotenv==1.2.3
