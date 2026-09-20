@@ -78,3 +78,10 @@ python run.py qabot --quiet            # silence dependency warnings
 Defaults for host, port and share also come from `.env`
 (`GRADIO_SERVER_NAME`, `GRADIO_SERVER_PORT`, `GRADIO_SHARE`), so you can set
 them once instead of passing flags each time.
+
+## Acknowledgements
+
+Built as part of the [IBM RAG and Agentic AI Professional Certificate](https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai), offered by IBM through Coursera. The certificate covers LangChain, LangGraph, RAG pipelines, vector databases, multimodal AI, and agentic frameworks such as CrewAI, AG2, BeeAI, and the Model Context Protocol.
+
+Model access is provided by [IBM watsonx.ai](https://www.ibm.com/products/watsonx-ai).
+
