@@ -78,28 +78,3 @@ python run.py qabot --quiet            # silence dependency warnings
 Defaults for host, port and share also come from `.env`
 (`GRADIO_SERVER_NAME`, `GRADIO_SERVER_PORT`, `GRADIO_SHARE`), so you can set
 them once instead of passing flags each time.
-
-## The RAG chatbot (`qabot`)
-
-`qabot` is the most involved app here. Upload a PDF, type a question, and the
-answer is generated from the retrieved passages rather than from the model's
-own memory.
-
-The pipeline, one function per step in `gradio_llm_app/rag.py`:
-
-1. **Load** — `PyPDFLoader` reads the uploaded file into one document per page.
-2. **Split** — `RecursiveCharacterTextSplitter` breaks pages into overlapping
-   chunks (`CHUNK_SIZE` 1000 characters, `CHUNK_OVERLAP` 50).
-3. **Embed and index** — each chunk is embedded with
-   `ibm/granite-embedding-278m-multilingual` and stored in an in-memory Chroma
-   collection.
-4. **Retrieve** — the vector store is exposed as a LangChain retriever.
-5. **Answer** — a `RetrievalQA` chain (`chain_type="stuff"`) drops the
-   retrieved chunks into the prompt and asks the LLM.
-
-  opt-in via `--share`.
-- The blanket `warnings.filterwarnings('ignore')` at the top of `qabot.py` is
-  now opt-in behind `--quiet`.
-- Unused `huggingface_hub` and `ModelInference` imports were dropped.
-- `requirements.txt` lists direct dependencies; the original 130-line freeze
-  is preserved as `requirements-lock.txt`.
